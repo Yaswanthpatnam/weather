@@ -19,7 +19,10 @@ def get_weather(request):
             return render(request, 'weather/index.html', {'error': "Please enter a city name."})
 
         try:
-            request_url = f"{BASE_URL}?q={city}&appid={API_KEY}"
+            if city:
+                request_url = f"{BASE_URL}?q={city}&appid={API_KEY}"
+            if city.isdigit():
+                request_url = f"{BASE_URL}?zip={city}&appid={API_KEY}"
             response = requests.get(request_url)
 
             if response.status_code == 200:
@@ -35,7 +38,10 @@ def get_weather(request):
                 return render(request, 'weather/result.html', context)
 
             elif response.status_code == 404:
-                return render(request, 'weather/index.html', {'error': f"City '{city}' not found."})
+                if city.isdigit():                    
+                    return render(request, 'weather/index.html', {'error': f"Zipcode '{city}' not found."})
+                else :
+                    return render(request, 'weather/index.html', {'error': f"City'{city}'not found."} )
             else:
                 return render(request, 'weather/index.html', {'error': "Something went wrong. Please try again later."})
 

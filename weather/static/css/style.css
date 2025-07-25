@@ -1,0 +1,227 @@
+/* Import fonts for the app: Inter for general text, Orbitron for headings and special content */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+:root {
+    /* Color and style variables for easy theme changes */
+    --bg-color: #f5f7fa;
+    --primary-color: #4a90e2;
+    --accent-color: #7ed6df;
+    --btn-hover: #5dade2;
+    --text-color: #fff;
+    --input-border: #b2bec3;
+    --radius: 8px;
+}
+
+/* Set up the base body styles and font */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Make the video cover the whole screen, always behind everything */
+.bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -2;
+    background: #000;
+}
+
+/* This overlay darkens the video so text is easier to read */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.45); /* Adjust this for more or less darkness */
+    z-index: -1;
+}
+
+/* The navbar sits on top of the video, at the top left */
+.navbar.video-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: transparent;
+    box-shadow: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 24px 48px 0 48px;
+    z-index: 2;
+}
+
+/* The app name in the navbar, styled to stand out */
+.brand {
+    font-size: 2.6em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-right: 32px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.7), 0 1px 0 #222;
+}
+
+/* Main content and container are above the video and overlay */
+main, .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* The main content box, centered and transparent so the video shows through */
+.container {
+    max-width: 540px;
+    width: 100%;
+    margin: 120px auto 0 auto;
+    padding: 40px 32px;
+    background: transparent;
+    border-radius: var(--radius);
+    box-shadow: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Special style for weather results: big, bold, and easy to read */
+.result-content {
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    color: #fff;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.85), 0 1px 0 #222;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+/* Make all headings, paragraphs, and links in results pop out */
+.result-content h2, .result-content p, .result-content a {
+    color: #fff;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.85), 0 1px 0 #222;
+}
+
+/* Style for links in the result area */
+.result-content a {
+    color: #7ed6df;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-decoration: underline;
+}
+
+.result-content a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Headings inside the main container (like form titles) */
+.container h2 {
+    font-size: 26px;
+    margin-bottom: 18px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* The weather search form: center everything and space it out */
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+/* Style the text input for city name */
+form input[type="text"] {
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--radius);
+    width: 220px;
+    transition: all 0.2s ease-in-out;
+    background: #f8fafc;
+}
+
+/* Highlight the input when it's focused */
+form input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 4px var(--primary-color);
+}
+
+/* Style the submit button for the form */
+form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.08);
+}
+
+/* Button gets a little darker when you hover over it */
+form button:hover {
+    background-color: var(--btn-hover);
+}
+
+/* Show error messages in red, just below the form */
+p[style*="color: red;"] {
+    margin-top: 16px;
+    color: #d00;
+    font-weight: 500;
+}
+
+/* General paragraph style for weather results */
+p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* General link style outside of result content */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 16px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--btn-hover);
+    text-decoration: underline;
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 600px) {
+    .navbar.video-navbar {
+        padding: 16px 8px 0 8px;
+    }
+    .brand {
+        font-size: 1.5em;
+    }
+    .container {
+        padding: 18px 8px;
+        margin: 80px 8px 0 8px;
+    }
+}

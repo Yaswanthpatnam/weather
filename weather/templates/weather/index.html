@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Weather App</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}
+    home
+{% endblock title %}
+
+{% block content %}
     <h2>Enter City Name</h2>
     <form method="post" action="{% url 'get_weather' %}">
         {% csrf_token %}
@@ -13,5 +14,5 @@
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% endif %}
-</body>
-</html>
+{% endblock content %}
+

@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Weather Result</title>
-</head>
-<body>
+
+{% extends "base.html" %}
+
+{% block title %}
+    weather
+{% endblock title %}
+
+{% block content %}
     <h2>Weather in {{ city }}</h2>
     <p><strong>Description:</strong> {{ weather }}</p>
     <p><strong>Temperature:</strong> {{ temperature }}°C</p>
     <a href="{% url 'index' %}">Search another city</a>
-</body>
-</html>
+{% endblock content %}

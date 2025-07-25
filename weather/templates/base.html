@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            weather-app
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <video class="bg-video" autoplay loop muted playsinline>
+        <source src="{% static 'videos/weather.mp4' %}" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+    <div class="navbar video-navbar">
+        <div class="brand">weather app</div>
+    </div>
+    <main>
+        <div class="container result-content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+</body>
+</html> 
